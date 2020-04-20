@@ -2,12 +2,23 @@
   "name": "mappedchain",
   "version": "1.1.0",
   "description": "",
-  "main": "dist/mappedchain.min.js",
-  "directories": {
-    "test": "test"
-  },
+  "homepage": "https://github.com/cmjio/mappedchain",
+  "repository": "https://github.com/cmjio/mappedchain",
+  "license": "MIT",
+  "author": "Chris Johnson <me@cmj.io>",
+  "main": "dist/mappedchain.cjs.js",
+  "unpkg": "dist/mappedchain.js",
+  "module": "dist/mappedchain.js",
+  "source": "src/mappedchain.ts",
+  "browser": "dist/mappedchain.umd.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "bili",
+    "build": "klap build",
+    "prepublishOnly": "yarn build",
+    "start": "klap start",
+    "watch": "klap watch",
     "test": "jest"
   },
   "keywords": [
@@ -16,13 +27,8 @@
     "chain",
     "mappedchain"
   ],
-  "author": "Chris Johnson <me@cmj.io>",
-  "license": "MIT",
-  "homepage": "https://github.com/cmjio/mappedchain",
-  "repository": "https://github.com/cmjio/mappedchain",
   "devDependencies": {
-    "bili": "^4.9.0",
-    "jest": "^25.3.0"
-  },
-  "dependencies": {}
+    "jest": "^25.4.0",
+    "klap": "4.2.3"
+  }
 }

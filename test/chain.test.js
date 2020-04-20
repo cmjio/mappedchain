@@ -1,6 +1,8 @@
 const { create } = require('../src/chain')
 const mapper = require('../src/mapper')
 
+import mapper from '../src/mapper'
+
 test('create chain', () => {
 
   const srcs = ['a', 'b', 'c']
