@@ -78,7 +78,7 @@ const mapperFactory = (raw: any, mapper: IMapper, opts?: object) => {
   return mapped;
 };
 
-export default (raw: object, mapper: IMapper, opts?: any) => {
+export const create = (raw: object, mapper: IMapper, opts?: any) => {
   let mapped;
 
   if (raw === undefined) {

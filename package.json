@@ -28,6 +28,8 @@
     "mappedchain"
   ],
   "devDependencies": {
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-typescript": "^7.9.0",
     "jest": "^25.4.0",
     "klap": "4.2.3"
   }

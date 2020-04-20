@@ -1,3 +1,7 @@
 export { default as get } from "./get";
-export { default as mapper } from "./mapper";
-export { default as chain } from "./chain";
+import { create as createMapper } from "./mapper";
+export { create } from "./chain";
+
+export const mapper = {
+  create: createMapper,
+};

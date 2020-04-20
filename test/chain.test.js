@@ -1,7 +1,5 @@
-const { create } = require('../src/chain')
-const mapper = require('../src/mapper')
-
-import mapper from '../src/mapper'
+import { create } from '../src/chain'
+import * as mapper from '../src/mapper'
 
 test('create chain', () => {
 
@@ -24,6 +22,7 @@ test('create chain', () => {
     o['id'] = index;
 
     i += 1;
+
     return mapper.create(o, customMapper)
   })
 
