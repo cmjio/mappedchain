@@ -1,4 +1,5 @@
-const get = require('./get');
+// const get = require('./get');
+import get from './get'
 
 const chainFactory = (models) => {
   const chain = {
@@ -48,7 +49,7 @@ const chainFactory = (models) => {
   return chain;
 }
 
-exports.create = (...mappedObjs) => {
+export default (...mappedObjs) => {
   const sources = []
   const isValid = mappedObjs.every((obj) => {
     const isMapped = obj.__isMapped__;
