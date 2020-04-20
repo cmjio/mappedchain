@@ -1,4 +1,4 @@
-const { create } = require('../src/mapper')
+import { create } from '../src/mapper'
 
 test('string alias', () => {
   const raw = {

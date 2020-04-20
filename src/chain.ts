@@ -1,5 +1,5 @@
 // const get = require('./get');
-import get from './get'
+import get from "./get";
 
 const chainFactory = (models) => {
   const chain = {
@@ -7,13 +7,14 @@ const chainFactory = (models) => {
     get: (prop, source, ...middleware) => {
       let sortedModels;
       let value;
-      const isSourceString = typeof source === 'string';
-      const isSourceArray = Array.isArray(source)
-      const validMiddleware = middleware.filter(m => typeof m === 'function')
+      const isSourceString = typeof source === "string";
+      const isSourceArray = Array.isArray(source);
+      const validMiddleware = middleware.filter((m) => typeof m === "function");
 
-      const runMiddleware = (initial) => validMiddleware.reduce((prev, curr) => curr(prev), initial)
+      const runMiddleware = (initial) =>
+        validMiddleware.reduce((prev, curr) => curr(prev), initial);
 
-      if (typeof prop !== 'string') {
+      if (typeof prop !== "string") {
         return;
       }
 
@@ -22,50 +23,52 @@ const chainFactory = (models) => {
       }
 
       if (isSourceString) {
-        const model = models.find(model => model.__source__ === source);
+        const model = models.find((model) => model.__source__ === source);
         if (!model) {
-          return
+          return;
         }
 
-        return runMiddleware(get(model, prop))
+        return runMiddleware(get(model, prop));
       }
 
       if (isSourceArray) {
-        sortedModels = source.map(src => models.find(model => model.__source__ === src))
+        sortedModels = source.map((src) =>
+          models.find((model) => model.__source__ === src)
+        );
       }
 
       if (!sortedModels) {
         sortedModels = models;
       }
 
-      sortedModels.some(model => {
+      sortedModels.some((model) => {
         value = get(model, prop);
         return value !== undefined;
-      })
+      });
 
       return runMiddleware(value);
-    }
-  }
+    },
+  };
   return chain;
-}
+};
 
-export default (...mappedObjs) => {
-  const sources = []
+export const create = (...mappedObjs) => {
+  const sources = [];
   const isValid = mappedObjs.every((obj) => {
     const isMapped = obj.__isMapped__;
     const src = obj.__source__;
     const isDifferent = sources.indexOf(obj.__source__) === -1;
 
-    sources.push(src)
+    sources.push(src);
 
-    return (isMapped && isDifferent)
-  })
+    return isMapped && isDifferent;
+  });
 
   if (!isValid) {
-    return null
+    return null;
   }
 
-  const chain = chainFactory(mappedObjs)
+  const chain = chainFactory(mappedObjs);
 
-  return chain
-}
+  return chain;
+};

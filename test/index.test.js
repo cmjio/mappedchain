@@ -1,4 +1,4 @@
-const chain = require('../src')
+import * as chain from '../src/mappedchain'
 
 test('test entry', () => {
   expect(chain).toBeTruthy()
